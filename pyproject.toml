@@ -2,4 +2,7 @@
 name = "mine-game"
 version = "0.1.0"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "pygame>=2.6.1",
+    "pygame-ce>=2.5.8",
+]
