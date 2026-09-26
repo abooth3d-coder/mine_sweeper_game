@@ -1,2 +1,19 @@
+#Grid constants
 GRID_TILES = 9
-GRID_SIZE = GRID_TILES * GRID_TILES
+GRID_SIZE = 40
+
+#Screen constants
+SCREEN_WIDTH = (GRID_TILES * GRID_TILES) +5
+SCREEN_HEIGHT = (GRID_TILES * GRID_TILES) +5
+
+#Colors
+BACKGROUND_COLOR = (200, 200, 200)
+MINE_COLOR       = (0, 0, 0)
+ONE_COLOR        = (0, 0, 255)
+TWO_COLOR        = (0, 128, 0)
+THREE_COLOR      = (255, 0, 0)
+FOUR_COLOR       = (128, 0, 128)
+FIVE_COLOR       = (255, 165, 0)
+SIX_COLOR        = (165, 42, 42)
+SEVEN_COLOR      = (255, 192, 203)
+EIGHT_COLOR      = (128, 128, 128)

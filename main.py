@@ -1,3 +1,5 @@
+import pygame
+import constants as const
 
 def main():
     pass
