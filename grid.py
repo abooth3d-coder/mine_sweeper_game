@@ -1,4 +1,5 @@
 import pygame
+import cell
 
 class Grid(pygame.sprite.Sprite):
     containers: tuple[pygame.sprite.Group, ...]
@@ -12,9 +13,16 @@ class Grid(pygame.sprite.Sprite):
         self.width = width
         self.height = height
         self.cell_size = cell_size
+        self.cells : list[cell.Cell] = []
 
     def draw(self, surface: pygame.Surface) -> None:
         pass
 
     def update(self) -> None:
         pass
+
+    def create_cells(self) -> None:
+        for row in range(0, self.height):
+            for col in range(0, self.width):
+                new_cell = cell.Cell(col, row)
+                self.cells.append(new_cell)
