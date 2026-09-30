@@ -1,5 +1,6 @@
 import pygame
 import cell
+import constants
 
 class Grid(pygame.sprite.Sprite):
     containers: tuple[pygame.sprite.Group, ...]
@@ -22,23 +23,28 @@ class Grid(pygame.sprite.Sprite):
         pass
 
     def create_cells(self) -> None:
-        for row in range(0, self.height):
-            for col in range(0, self.width):
-                new_cell = cell.Cell(col, row)
+        for row in range(constants.GRID_TILES):
+            for col in range(constants.GRID_TILES):
+                new_cell = cell.Cell()
+                new_cell.set_x_y(col, row)
                 self.cells.append(new_cell)
 
     def create_grid(self) -> None:
         self.create_cells()
-        grid_x: int = 0
-        grid_y: int = 0
-        for cell in self.cells:
-            cell.set_x_y(grid_x, grid_y)
-            if grid_x == 9:
-                grid_x = 0
-                grid_y += 1
-            else:
-                grid_x += 1
+
 
     def draw_grid(self, surface: pygame.Surface) -> None:
         for cell in self.cells:
             cell.draw_cell(surface)
+
+    def draw_cell(self, surface: pygame.Surface) -> None:
+        # 1. Calculate the base pixel coordinates, then add a 10-pixel offset
+        pixel_x = (self.location.x * self.size) + 10
+        pixel_y = (self.location.y * self.size) + 10
+
+        # 2. Use those shifted coordinates to create your rectangle
+        rect = pygame.Rect(pixel_x, pixel_y, self.size, self.size)
+
+        # 3. Draw the background and the border
+        pygame.draw.rect(surface, self.colour, rect)
+        pygame.draw.rect(surface, (0, 0, 0), rect, 1)

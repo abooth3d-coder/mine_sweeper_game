@@ -2,15 +2,12 @@ import pygame
 import constants
 class Cell:
 
-
-    def __init__(self, cell_width : int,cell_height : int) -> None:
-        self.cell_width = cell_width
-        self.cell_height = cell_height
+    def __init__(self) -> None:
         self.x: int = 0
         self.y: int = 0
-        self.location : pygame.Vector2 = pygame.Vector2(0, 0)
-        self.colour : pygame.Color = pygame.Color(constants.BACKGROUND_COLOR)
-        self.size : int = constants.GRID_SIZE
+        self.location: pygame.Vector2 = pygame.Vector2(0, 0)
+        self.colour: pygame.Color = pygame.Color(constants.BACKGROUND_COLOR)
+        self.size: int = constants.GRID_SIZE
         self.is_mine: bool = False
         self.number: int = 0
         self.flagged: bool = False

@@ -19,7 +19,10 @@ def main():
             if event.type == pygame.QUIT:
                 return
         game_clock.tick(60)
-        game_grid.draw_grid(screen)
+        grid_width = constants.GRID_TILES * constants.GRID_SIZE
+        grid_height = constants.GRID_TILES * constants.GRID_SIZE
+        grid_surface = screen.subsurface(pygame.Rect(10, 10, grid_width, grid_height))
+        game_grid.draw_grid(grid_surface)
         pygame.display.flip()
 
 if __name__ == '__main__':
