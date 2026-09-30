@@ -16,11 +16,6 @@ class Grid(pygame.sprite.Sprite):
         self.cell_size = cell_size
         self.cells : list[cell.Cell] = []
 
-    def draw(self, surface: pygame.Surface) -> None:
-        pass
-
-    def update(self) -> None:
-        pass
 
     def create_cells(self) -> None:
         for row in range(constants.GRID_TILES):
@@ -36,15 +31,3 @@ class Grid(pygame.sprite.Sprite):
     def draw_grid(self, surface: pygame.Surface) -> None:
         for cell in self.cells:
             cell.draw_cell(surface)
-
-    def draw_cell(self, surface: pygame.Surface) -> None:
-        # 1. Calculate the base pixel coordinates, then add a 10-pixel offset
-        pixel_x = (self.location.x * self.size) + 10
-        pixel_y = (self.location.y * self.size) + 10
-
-        # 2. Use those shifted coordinates to create your rectangle
-        rect = pygame.Rect(pixel_x, pixel_y, self.size, self.size)
-
-        # 3. Draw the background and the border
-        pygame.draw.rect(surface, self.colour, rect)
-        pygame.draw.rect(surface, (0, 0, 0), rect, 1)

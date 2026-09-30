@@ -1,6 +1,8 @@
 import pygame
 import constants
 class Cell:
+    pygame.font.init()
+    CELL_FONT = pygame.font.SysFont("Arial", 22, bold=True)
 
     def __init__(self) -> None:
         self.x: int = 0
@@ -12,6 +14,7 @@ class Cell:
         self.number: int = 0
         self.flagged: bool = False
         self.is_revealed: bool = False
+        self.mine: str = "M"
 
 
     def set_mine(self) -> None:
@@ -37,3 +40,7 @@ class Cell:
         rect = pygame.Rect(self.location.x * self.size, self.location.y * self.size, self.size, self.size)
         pygame.draw.rect(surface, self.colour, rect)
         pygame.draw.rect(surface, (0, 0, 0), rect, 1)
+        if self.is_mine:
+            mine_text = self.CELL_FONT.render(self.mine, True, constants.MINE_COLOR)
+            text_rect = mine_text.get_rect(center=rect.center)
+            surface.blit(mine_text, text_rect)
