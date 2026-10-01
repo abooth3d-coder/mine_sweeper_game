@@ -15,6 +15,7 @@ def main():
     game_grid = mine_grid.MineGrid(SCREEN_WIDTH, SCREEN_HEIGHT, constants.GRID_SIZE)
     game_grid.create_grid()
     game_grid.populating_mines()
+    game_grid.calculate_proximity_numbers()
     grid_width = constants.GRID_TILES * constants.GRID_SIZE
     grid_height = constants.GRID_TILES * constants.GRID_SIZE
     grid_surface = screen.subsurface(pygame.Rect(10, 10, grid_width, grid_height))

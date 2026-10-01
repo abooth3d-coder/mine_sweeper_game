@@ -22,3 +22,19 @@ class MineGrid(grid.Grid):
         for single_cell in mined_cells:
             single_cell.set_mine()
         self.populate_mines = 0
+
+    def calculate_proximity_numbers(self):
+        for target_cell in self.cells:
+            if target_cell.is_mine:
+                continue
+            for offset_x in [-1, 0, 1]:
+                for offset_y in [-1, 0, 1]:
+                    if offset_x == 0 and offset_y == 0:
+                        continue
+                    neighbor_x = target_cell.x + offset_x
+                    neighbor_y = target_cell.y + offset_y
+                    if 0 <= neighbor_x < constants.GRID_TILES and 0 <= neighbor_y < constants.GRID_TILES:
+                        for possible_neighbor in self.cells:
+                            if possible_neighbor.x == neighbor_x and possible_neighbor.y == neighbor_y:
+                                if possible_neighbor.is_mine:
+                                    target_cell.add_number()
