@@ -7,3 +7,6 @@ The objective is to clear the board without detonating any mines.
 
 More information about the game, including installation instructions, gameplay mechanics, and how to run the game, 
 can be found in the following sections in future updates to this README file.
+
+Google Gemini have been used in this project for game diagnostics,testing and correction, ensuring a smooth and 
+bug-free gaming experience.

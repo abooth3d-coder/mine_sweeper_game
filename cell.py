@@ -40,24 +40,30 @@ class Cell:
         rect = pygame.Rect(self.location.x * self.size, self.location.y * self.size, self.size, self.size)
         pygame.draw.rect(surface, self.colour, rect)
         pygame.draw.rect(surface, (0, 0, 0), rect, 1)
-        if self.is_mine:
-            mine_text = self.CELL_FONT.render(self.mine, True, constants.MINE_COLOR)
-            text_rect = mine_text.get_rect(center=rect.center)
-            surface.blit(mine_text, text_rect)
-        elif self.number > 0:
-            # Map numbers directly to your existing constants
-            color_map = {
-                1: constants.ONE_COLOR,
-                2: constants.TWO_COLOR,
-                3: constants.THREE_COLOR,
-                4: constants.FOUR_COLOR,
-                5: constants.FIVE_COLOR,
-                6: constants.SIX_COLOR,
-                7: constants.SEVEN_COLOR,
-                8: constants.EIGHT_COLOR
-            }
-            text_color = color_map.get(self.number, (0, 0, 0))
+        if self.flagged:
+            flag_text = self.CELL_FONT.render("F", True, constants.FLAG_COLOR)
+            text_rect = flag_text.get_rect(center=rect.center)
+            surface.blit(flag_text, text_rect)
+        elif self.is_revealed:
+            if self.is_mine:
+                mine_text = self.CELL_FONT.render(self.mine, True, constants.MINE_COLOR)
+                text_rect = mine_text.get_rect(center=rect.center)
+                surface.blit(mine_text, text_rect)
+            elif self.number > 0:
+                # Map numbers directly to your existing constants
+                color_map = {
+                    1: constants.ONE_COLOR,
+                    2: constants.TWO_COLOR,
+                    3: constants.THREE_COLOR,
+                    4: constants.FOUR_COLOR,
+                    5: constants.FIVE_COLOR,
+                    6: constants.SIX_COLOR,
+                    7: constants.SEVEN_COLOR,
+                    8: constants.EIGHT_COLOR
+                }
+                text_color = color_map.get(self.number, (0, 0, 0))
 
-            number_text = self.CELL_FONT.render(str(self.number), True, text_color)
-            text_rect = number_text.get_rect(center=rect.center)
-            surface.blit(number_text, text_rect)
+                number_text = self.CELL_FONT.render(str(self.number), True, text_color)
+                text_rect = number_text.get_rect(center=rect.center)
+                surface.blit(number_text, text_rect)
+                surface.blit(number_text, text_rect)

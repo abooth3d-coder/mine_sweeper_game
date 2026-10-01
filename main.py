@@ -1,5 +1,4 @@
 import pygame
-import grid
 import mine_grid
 import constants
 from constants import SCREEN_WIDTH, SCREEN_HEIGHT
@@ -24,6 +23,10 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                raw_x, raw_y = event.pos
+                adjusted_pos = (raw_x - 10, raw_y - 10)
+                game_grid.handle_click(adjusted_pos, event.button)
         game_clock.tick(60)
         game_grid.draw_grid(grid_surface)
         pygame.display.flip()

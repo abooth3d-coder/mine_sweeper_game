@@ -2,6 +2,7 @@ import grid
 import cell
 import constants
 import random
+import pygame
 
 
 def check_mine(cell_to_be_checked : cell.Cell) -> bool:
@@ -38,3 +39,20 @@ class MineGrid(grid.Grid):
                             if possible_neighbor.x == neighbor_x and possible_neighbor.y == neighbor_y:
                                 if possible_neighbor.is_mine:
                                     target_cell.add_number()
+
+
+    def handle_click(self, mouse_pos: tuple[int, int], button_type: int) -> None:
+        for single_cell in self.cells:
+            cell_rect = pygame.Rect(
+                single_cell.location.x * single_cell.size,
+                single_cell.location.y * single_cell.size,
+                single_cell.size,
+                single_cell.size
+            )
+            if cell_rect.collidepoint(mouse_pos):
+                if button_type == 1:  # Left-click
+                    if not single_cell.is_revealed and not single_cell.flagged:
+                        single_cell.reveal()
+                elif button_type == 3:  # Right-click
+                    if not single_cell.is_revealed:
+                        single_cell.toggle_flagged()
