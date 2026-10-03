@@ -1,6 +1,6 @@
 import grid
 import cell
-import constants
+import config
 import random
 import pygame
 
@@ -15,11 +15,11 @@ class MineGrid(grid.Grid):
 
     def __init__(self, width: int, height: int, cell_size: int):
         super().__init__(width, height, cell_size)
-        self.populate_mines : int = constants.MINES_MAX
+        self.populate_mines : int = config.MINES_MAX
 
 
     def populating_mines(self):
-        mined_cells = random.sample(self.cells, constants.MINES_MAX)
+        mined_cells = random.sample(self.cells, config.MINES_MAX)
         for single_cell in mined_cells:
             single_cell.set_mine()
         self.populate_mines = 0
@@ -34,7 +34,7 @@ class MineGrid(grid.Grid):
                         continue
                     neighbor_x = target_cell.x + offset_x
                     neighbor_y = target_cell.y + offset_y
-                    if 0 <= neighbor_x < constants.GRID_TILES and 0 <= neighbor_y < constants.GRID_TILES:
+                    if 0 <= neighbor_x < config.GRID_TILES and 0 <= neighbor_y < config.GRID_TILES:
                         for possible_neighbor in self.cells:
                             if possible_neighbor.x == neighbor_x and possible_neighbor.y == neighbor_y:
                                 if possible_neighbor.is_mine:

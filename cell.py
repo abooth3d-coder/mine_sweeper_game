@@ -1,5 +1,5 @@
 import pygame
-import constants
+import config
 class Cell:
     pygame.font.init()
     CELL_FONT = pygame.font.SysFont("Arial", 22, bold=True)
@@ -8,8 +8,8 @@ class Cell:
         self.x: int = 0
         self.y: int = 0
         self.location: pygame.Vector2 = pygame.Vector2(0, 0)
-        self.colour: pygame.Color = pygame.Color(constants.BACKGROUND_COLOR)
-        self.size: int = constants.GRID_SIZE
+        self.colour: pygame.Color = pygame.Color(config.BACKGROUND_COLOR)
+        self.size: int = config.GRID_SIZE
         self.is_mine: bool = False
         self.number: int = 0
         self.flagged: bool = False
@@ -41,26 +41,26 @@ class Cell:
         pygame.draw.rect(surface, self.colour, rect)
         pygame.draw.rect(surface, (0, 0, 0), rect, 1)
         if self.flagged:
-            flag_text = self.CELL_FONT.render("F", True, constants.FLAG_COLOR)
+            flag_text = self.CELL_FONT.render("F", True, config.FLAG_COLOR)
             text_rect = flag_text.get_rect(center=rect.center)
             surface.blit(flag_text, text_rect)
         elif self.is_revealed:
             if self.is_mine:
-                mine_text = self.CELL_FONT.render(self.mine, True, constants.MINE_COLOR)
+                mine_text = self.CELL_FONT.render(self.mine, True, config.MINE_COLOR)
                 text_rect = mine_text.get_rect(center=rect.center)
                 surface.blit(mine_text, text_rect)
             elif self.number >= 0:
                 # Map numbers directly to your existing constants
                 color_map = {
-                    0: constants.ZERO_COLOR,
-                    1: constants.ONE_COLOR,
-                    2: constants.TWO_COLOR,
-                    3: constants.THREE_COLOR,
-                    4: constants.FOUR_COLOR,
-                    5: constants.FIVE_COLOR,
-                    6: constants.SIX_COLOR,
-                    7: constants.SEVEN_COLOR,
-                    8: constants.EIGHT_COLOR
+                    0: config.ZERO_COLOR,
+                    1: config.ONE_COLOR,
+                    2: config.TWO_COLOR,
+                    3: config.THREE_COLOR,
+                    4: config.FOUR_COLOR,
+                    5: config.FIVE_COLOR,
+                    6: config.SIX_COLOR,
+                    7: config.SEVEN_COLOR,
+                    8: config.EIGHT_COLOR
                 }
                 text_color = color_map.get(self.number, (0, 0, 0))
 

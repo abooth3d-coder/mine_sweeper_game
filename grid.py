@@ -1,6 +1,6 @@
 import pygame
 import cell
-import constants
+import config
 
 class Grid(pygame.sprite.Sprite):
     containers: tuple[pygame.sprite.Group, ...]
@@ -18,8 +18,8 @@ class Grid(pygame.sprite.Sprite):
 
 
     def create_cells(self) -> None:
-        for row in range(constants.GRID_TILES):
-            for col in range(constants.GRID_TILES):
+        for row in range(config.GRID_TILES):
+            for col in range(config.GRID_TILES):
                 new_cell = cell.Cell()
                 new_cell.set_x_y(col, row)
                 self.cells.append(new_cell)

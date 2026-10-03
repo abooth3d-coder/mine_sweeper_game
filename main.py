@@ -1,26 +1,28 @@
 import pygame
 import mine_grid
-import constants
-from constants import SCREEN_WIDTH, SCREEN_HEIGHT
+import config
+from game_mode import GameMode
+from config import SCREEN_WIDTH, SCREEN_HEIGHT
 
 def main():
     # Initializing each logic of the game and the game loop
     print("\nWelcome to Minesweeper")
-    print(f"Screen size: {SCREEN_WIDTH} x {SCREEN_HEIGHT}")
     pygame.init()
     print(f"pygame version: {pygame.__version__}")
     pygame.display.set_caption("Minesweeper")    # Set the window title
+    game_mode = GameMode()
+    game_mode.difficulty_selector()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Set the window size
     game_clock = pygame.time.Clock()    # Create a clock to manage the frame rate
-    game_grid = mine_grid.MineGrid(SCREEN_WIDTH, SCREEN_HEIGHT, constants.GRID_SIZE)    # Create the mine grid instance
+    game_grid = mine_grid.MineGrid(SCREEN_WIDTH, SCREEN_HEIGHT, config.GRID_SIZE)    # Create the mine grid instance
     game_grid.create_grid()     # Create the grid of cells
     game_grid.populating_mines()    # Populate the grid with mines
     game_grid.calculate_proximity_numbers()  # Calculate the numbers for each cell based on adjacent mines
-    grid_width = constants.GRID_TILES * constants.GRID_SIZE     # Calculate the width of the grid in pixels
-    grid_height = constants.GRID_TILES * constants.GRID_SIZE     # Calculate the height of the grid in pixels
+    grid_width = config.GRID_TILES * config.GRID_SIZE     # Calculate the width of the grid in pixels
+    grid_height = config.GRID_TILES * config.GRID_SIZE     # Calculate the height of the grid in pixels
     grid_surface = screen.subsurface(pygame.Rect(10, 10, grid_width, grid_height))  # Create a subsurface for the grid to draw on
     while True: # Main game loop
-        screen.fill(constants.BACKGROUND_COLOR)     # Fill the screen with the background color
+        screen.fill(config.BACKGROUND_COLOR)     # Fill the screen with the background color
         for event in pygame.event.get(): #Event handling loop
             if event.type == pygame.QUIT: return     # Quit the game if the user closes the window
             elif event.type == pygame.MOUSEBUTTONDOWN:   # Handle mouse button down events
