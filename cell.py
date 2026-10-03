@@ -49,9 +49,10 @@ class Cell:
                 mine_text = self.CELL_FONT.render(self.mine, True, constants.MINE_COLOR)
                 text_rect = mine_text.get_rect(center=rect.center)
                 surface.blit(mine_text, text_rect)
-            elif self.number > 0:
+            elif self.number >= 0:
                 # Map numbers directly to your existing constants
                 color_map = {
+                    0: constants.ZERO_COLOR,
                     1: constants.ONE_COLOR,
                     2: constants.TWO_COLOR,
                     3: constants.THREE_COLOR,

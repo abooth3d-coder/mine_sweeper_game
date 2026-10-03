@@ -9,6 +9,7 @@ SCREEN_HEIGHT : int = (GRID_TILES * GRID_SIZE) +20
 #Colors
 BACKGROUND_COLOR : tuple = (200, 200, 200)
 MINE_COLOR : tuple = (0, 0, 0)
+ZERO_COLOR : tuple = (255, 255, 255)
 ONE_COLOR  : tuple = (0, 0, 255)
 TWO_COLOR  : tuple = (0, 128, 0)
 THREE_COLOR : tuple = (255, 0, 0)
