@@ -8,6 +8,8 @@ DIFFICULTY_LEVELS : dict = {
     "Custom": {"difficulty": "Custom", "grid_size": 1, "mines": 1} #Custom difficulty allows the user to set their own grid size and number of mines (value 1 is a placeholder and will be replaced by user input)
 }
 
+TILE_SIZE = 30
+
 #Colors
 BACKGROUND_COLOR : tuple = (200, 200, 200)
 MINE_COLOR : tuple = (0, 0, 0)

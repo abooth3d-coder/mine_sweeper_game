@@ -1,15 +1,18 @@
 import pygame
 import config
+
+
 class Cell:
     pygame.font.init()
     CELL_FONT = pygame.font.SysFont("Arial", 22, bold=True)
 
-    def __init__(self) -> None:
+    def __init__(self, current_level: dict) -> None:
+        self.current_level = current_level
         self.x: int = 0
         self.y: int = 0
         self.location: pygame.Vector2 = pygame.Vector2(0, 0)
         self.colour: pygame.Color = pygame.Color(config.BACKGROUND_COLOR)
-        self.size: int = config.GRID_SIZE
+        self.size: int = config.TILE_SIZE
         self.is_mine: bool = False
         self.number: int = 0
         self.flagged: bool = False

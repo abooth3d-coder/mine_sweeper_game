@@ -2,24 +2,27 @@ import pygame
 import mine_grid
 import config
 from game_mode import GameMode
-from config import SCREEN_WIDTH, SCREEN_HEIGHT
 
 def main():
     # Initializing each logic of the game and the game loop
     print("\nWelcome to Minesweeper")
     pygame.init()
+    new_game_mode = GameMode()
+    active_level = new_game_mode.get_level()
+    grid_size = active_level["grid_size"]
+    screen_width = (grid_size * config.TILE_SIZE) + 20
+    screen_height = (grid_size * config.TILE_SIZE) + 20
+    print(f"{screen_width} x {screen_height}\n")
     print(f"pygame version: {pygame.__version__}")
     pygame.display.set_caption("Minesweeper")    # Set the window title
-    game_mode = GameMode()
-    game_mode.difficulty_selector()
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) # Set the window size
+    screen = pygame.display.set_mode((screen_width, screen_height)) # Set the window size
     game_clock = pygame.time.Clock()    # Create a clock to manage the frame rate
-    game_grid = mine_grid.MineGrid(SCREEN_WIDTH, SCREEN_HEIGHT, config.GRID_SIZE)    # Create the mine grid instance
+    game_grid = mine_grid.MineGrid(screen_width, screen_height, grid_size, active_level["mines"],active_level)    # Create the mine grid instance
     game_grid.create_grid()     # Create the grid of cells
     game_grid.populating_mines()    # Populate the grid with mines
     game_grid.calculate_proximity_numbers()  # Calculate the numbers for each cell based on adjacent mines
-    grid_width = config.GRID_TILES * config.GRID_SIZE     # Calculate the width of the grid in pixels
-    grid_height = config.GRID_TILES * config.GRID_SIZE     # Calculate the height of the grid in pixels
+    grid_width = config.TILE_SIZE * grid_size   # Calculate the width of the grid in pixels
+    grid_height = config.TILE_SIZE * grid_size    # Calculate the height of the grid in pixels
     grid_surface = screen.subsurface(pygame.Rect(10, 10, grid_width, grid_height))  # Create a subsurface for the grid to draw on
     while True: # Main game loop
         screen.fill(config.BACKGROUND_COLOR)     # Fill the screen with the background color
