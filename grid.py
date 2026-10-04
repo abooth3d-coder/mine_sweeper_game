@@ -5,22 +5,19 @@ import config
 class Grid(pygame.sprite.Sprite):
     containers: tuple[pygame.sprite.Group, ...]
 
-    def __init__(self, width: int, height: int, cell_size: int):
-        # Check if containers are defined before unpacking them
-        if hasattr(self, "containers") and self.containers:
-            super().__init__(*self.containers)
-        else:
-            super().__init__()
+    def __init__(self, width: int, height: int, cell_size: int,active_level: dict) -> None:
+        super().__init__()
         self.width = width
         self.height = height
         self.cell_size = cell_size
         self.cells : list[cell.Cell] = []
+        self.active_level = active_level
 
 
     def create_cells(self) -> None:
-        for row in range(config.GRID_TILES):
-            for col in range(config.GRID_TILES):
-                new_cell = cell.Cell()
+        for row in range(self.active_level["grid_size"]):
+            for col in range(self.active_level["grid_size"]):
+                new_cell = cell.Cell(self.active_level)
                 new_cell.set_x_y(col, row)
                 self.cells.append(new_cell)
 
