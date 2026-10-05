@@ -1,11 +1,11 @@
 #Profile constants
 DIFFICULTY_LEVELS : dict = {
-    "Easy": {"difficulty": "Easy", "grid_size": 9, "mines": 10},
-    "Medium": {"difficulty": "Medium", "grid_size": 16, "mines": 40},
-    "Hard": {"difficulty": "Hard", "grid_size": 24, "mines": 99},
-    "Extreme": {"difficulty": "Extreme", "grid_size": 30, "mines": 200},
-    "Insane": {"difficulty": "Insane", "grid_size": 40, "mines": 400},
-    "Custom": {"difficulty": "Custom", "grid_size": 1, "mines": 1} #Custom difficulty allows the user to set their own grid size and number of mines (value 1 is a placeholder and will be replaced by user input)
+    "Easy": {"difficulty": "Easy", "grid_size": 9, "mines": 10, "tile_size": 35},
+    "Medium": {"difficulty": "Medium", "grid_size": 16, "mines": 40, "tile_size": 30},
+    "Hard": {"difficulty": "Hard", "grid_size": 24, "mines": 99,"tile_size": 25},
+    "Extreme": {"difficulty": "Extreme", "grid_size": 30, "mines": 200,"tile_size": 20},
+    "Insane": {"difficulty": "Insane", "grid_size": 40, "mines": 400, "tile_size": 15},
+    "Custom": {"difficulty": "Custom", "grid_size": 1, "mines": 1, "tile_size": 20} #Custom difficulty allows the user to set their own grid size and number of mines (value 1 is a placeholder and will be replaced by user input)
 }
 
 TILE_SIZE = 30

@@ -4,7 +4,7 @@ import config
 
 class Cell:
     pygame.font.init()
-    CELL_FONT = pygame.font.SysFont("Arial", 22, bold=True)
+    CELL_FONT = pygame.font.SysFont("Arial", 16, bold=False)
 
     def __init__(self, current_level: dict) -> None:
         self.current_level = current_level
@@ -12,7 +12,7 @@ class Cell:
         self.y: int = 0
         self.location: pygame.Vector2 = pygame.Vector2(0, 0)
         self.colour: pygame.Color = pygame.Color(config.BACKGROUND_COLOR)
-        self.size: int = config.TILE_SIZE
+        self.size: int = current_level["tile_size"]
         self.is_mine: bool = False
         self.number: int = 0
         self.flagged: bool = False

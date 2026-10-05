@@ -10,8 +10,9 @@ def main():
     new_game_mode = GameMode()
     active_level = new_game_mode.get_level()
     grid_size = active_level["grid_size"]
-    screen_width = (grid_size * config.TILE_SIZE) + 20
-    screen_height = (grid_size * config.TILE_SIZE) + 20
+    tile_size = active_level["tile_size"]
+    screen_width = (grid_size * tile_size + 20)
+    screen_height = (grid_size * tile_size) + 20
     print(f"{screen_width} x {screen_height}\n")
     print(f"pygame version: {pygame.__version__}")
     pygame.display.set_caption("Minesweeper")    # Set the window title
@@ -21,8 +22,8 @@ def main():
     game_grid.create_grid()     # Create the grid of cells
     game_grid.populating_mines()    # Populate the grid with mines
     game_grid.calculate_proximity_numbers()  # Calculate the numbers for each cell based on adjacent mines
-    grid_width = config.TILE_SIZE * grid_size   # Calculate the width of the grid in pixels
-    grid_height = config.TILE_SIZE * grid_size    # Calculate the height of the grid in pixels
+    grid_width = tile_size * grid_size   # Calculate the width of the grid in pixels
+    grid_height = tile_size * grid_size    # Calculate the height of the grid in pixels
     grid_surface = screen.subsurface(pygame.Rect(10, 10, grid_width, grid_height))  # Create a subsurface for the grid to draw on
     while True: # Main game loop
         screen.fill(config.BACKGROUND_COLOR)     # Fill the screen with the background color
