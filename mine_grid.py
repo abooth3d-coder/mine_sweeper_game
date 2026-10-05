@@ -12,8 +12,8 @@ def check_mine(cell_to_be_checked : cell.Cell) -> bool:
 
 class MineGrid(grid.Grid):
 
-    def __init__(self, width: int, height: int, cell_size: int, mine_size: int, active_level: dict):
-        super().__init__(width, height, cell_size,active_level)
+    def __init__(self, width: int, height: int, cell_size: int, mine_size: int, active_level: dict, current_game_mode) -> None:
+        super().__init__(width, height, cell_size,active_level, current_game_mode)
         self.populate_mines : int = mine_size
         self.active_level = active_level
 

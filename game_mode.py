@@ -1,5 +1,7 @@
+import sys
 import config
 
+timer: int = 0
 
 def set_custom() -> dict:
     is_valid: bool = False
@@ -22,11 +24,31 @@ def set_custom() -> dict:
     return {"grid_size": custom_grid_size, "mines": mines}
 
 
+def check_loose_condition(is_mine) -> None:
+    if is_mine:
+        print("You loose!\nGame Over!")
+        print(f"Time on clock {(timer/1000)} seconds.\n")
+        sys.exit()
+
+
+def add_second_to_timer() -> None:
+    global timer
+    timer += 1
+
+
 class GameMode:
     def __init__(self):
         self.level = None
         self.difficulty: str = ""
         self.difficulty_selector()
+        self.mines_left =0
+
+    def found_mine_counter(self):
+        self.mines_left -= 1
+
+    def check_win_condition(self) -> None:
+        if self.mines_left == 0:
+            print(f"You won!\nYou found all {self.level['mines']} mines.")
 
     def difficulty_selector(self) -> None:
         difficulty_keys = list(config.DIFFICULTY_LEVELS.keys())
@@ -42,6 +64,7 @@ class GameMode:
 
                     self.level = config.DIFFICULTY_LEVELS[selected_difficulty]
                     self.difficulty = selected_difficulty
+                    self.mines_left = self.level["mines"]
                     is_valid = True
                 else:
                     print("Invalid choice. Please select a number from the menu.\n")

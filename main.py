@@ -1,4 +1,6 @@
 import pygame
+
+import game_mode
 import mine_grid
 import config
 from game_mode import GameMode
@@ -18,7 +20,7 @@ def main():
     pygame.display.set_caption("Minesweeper")    # Set the window title
     screen = pygame.display.set_mode((screen_width, screen_height)) # Set the window size
     game_clock = pygame.time.Clock()    # Create a clock to manage the frame rate
-    game_grid = mine_grid.MineGrid(screen_width, screen_height, grid_size, active_level["mines"],active_level)    # Create the mine grid instance
+    game_grid = mine_grid.MineGrid(screen_width, screen_height, grid_size, active_level["mines"],active_level,new_game_mode)    # Create the mine grid instance
     game_grid.create_grid()     # Create the grid of cells
     game_grid.populating_mines()    # Populate the grid with mines
     game_grid.calculate_proximity_numbers()  # Calculate the numbers for each cell based on adjacent mines
@@ -33,7 +35,8 @@ def main():
                 raw_x, raw_y = event.pos    # Get the raw mouse position
                 adjusted_pos = (raw_x - 10, raw_y - 10)  # Adjust the mouse position to account for the grid's offset
                 game_grid.handle_click(adjusted_pos, event.button)  # Handle the click event on the grid
-        game_clock.tick(60)     # Limit the frame rate to 60 frames per second
+        game_clock.tick(60)# Limit the frame rate to 60 frames per second
+        game_mode.add_second_to_timer()
         game_grid.draw_grid(grid_surface)   # Draw the grid on the grid surface
         pygame.display.flip()   # Update the display to show the drawn grid
 

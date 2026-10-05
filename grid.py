@@ -5,19 +5,20 @@ import config
 class Grid(pygame.sprite.Sprite):
     containers: tuple[pygame.sprite.Group, ...]
 
-    def __init__(self, width: int, height: int, cell_size: int,active_level: dict) -> None:
+    def __init__(self, width: int, height: int, cell_size: int,active_level: dict, current_game_mode) -> None:
         super().__init__()
         self.width = width
         self.height = height
         self.cell_size = cell_size
         self.cells : list[cell.Cell] = []
         self.active_level = active_level
+        self.current_game_mode = current_game_mode
 
 
     def create_cells(self) -> None:
         for row in range(self.active_level["grid_size"]):
             for col in range(self.active_level["grid_size"]):
-                new_cell = cell.Cell(self.active_level)
+                new_cell = cell.Cell(self.active_level,self.current_game_mode)
                 new_cell.set_x_y(col, row)
                 self.cells.append(new_cell)
 
