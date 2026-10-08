@@ -49,7 +49,7 @@ class Cell:
             text_rect = flag_text.get_rect(center=rect.center)
             surface.blit(flag_text, text_rect)
             if self.is_mine:
-                self.current_game_mode.found_mine()
+                self.current_game_mode.found_mine_counter()
                 self.current_game_mode.check_win_condition()
         elif self.is_revealed:
             if self.is_mine:

@@ -5,7 +5,8 @@ DIFFICULTY_LEVELS : dict = {
     "Hard": {"difficulty": "Hard", "grid_size": 24, "mines": 99,"tile_size": 25},
     "Extreme": {"difficulty": "Extreme", "grid_size": 30, "mines": 200,"tile_size": 20},
     "Insane": {"difficulty": "Insane", "grid_size": 40, "mines": 400, "tile_size": 15},
-    "Custom": {"difficulty": "Custom", "grid_size": 1, "mines": 1, "tile_size": 20} #Custom difficulty allows the user to set their own grid size and number of mines (value 1 is a placeholder and will be replaced by user input)
+    #Custom difficulty allows the user to set their own grid size and number of mines (value 1 is a placeholder and will be replaced by user input)
+    "Custom": {"difficulty": "Custom", "grid_size": 1, "mines": 1, "tile_size": 20}
 }
 
 #Colors

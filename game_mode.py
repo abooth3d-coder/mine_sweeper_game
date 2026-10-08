@@ -27,7 +27,7 @@ def set_custom() -> dict:
 def check_loose_condition(is_mine) -> None:
     if is_mine:
         print("You loose!\nGame Over!")
-        print(f"Time on clock {(timer/1000)} seconds.\n")
+        print(f"Time on clock {(timer/60)} seconds.\n")
         sys.exit()
 
 

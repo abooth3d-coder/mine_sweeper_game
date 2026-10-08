@@ -16,7 +16,7 @@ def main():
     screen_width = (grid_size * tile_size + 20)
     screen_height = (grid_size * tile_size) + 20
     print(f"{screen_width} x {screen_height}\n")
-    print(f"pygame version: {pygame.__version__}")
+    print(f"pygame version: {pygame.version}")
     pygame.display.set_caption("Minesweeper")    # Set the window title
     screen = pygame.display.set_mode((screen_width, screen_height)) # Set the window size
     game_clock = pygame.time.Clock()    # Create a clock to manage the frame rate
