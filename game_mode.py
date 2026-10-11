@@ -2,7 +2,7 @@ import sys
 import config
 
 timer: int = 0
-
+mines_max : int = 0
 def set_custom() -> dict:
     is_valid: bool = False
     custom_grid_size: int = 0
@@ -41,14 +41,16 @@ class GameMode:
         self.level = None
         self.difficulty: str = ""
         self.difficulty_selector()
-        self.mines_left =0
 
     def found_mine_counter(self):
-        self.mines_left -= 1
+        global mines_max
+        mines_max -= 1
 
     def check_win_condition(self) -> None:
-        if self.mines_left == 0:
+        global mines_max
+        if mines_max == 0:
             print(f"You won!\nYou found all {self.level['mines']} mines.")
+            sys.exit()
 
     def difficulty_selector(self) -> None:
         difficulty_keys = list(config.DIFFICULTY_LEVELS.keys())
@@ -64,7 +66,8 @@ class GameMode:
 
                     self.level = config.DIFFICULTY_LEVELS[selected_difficulty]
                     self.difficulty = selected_difficulty
-                    self.mines_left = self.level["mines"]
+                    global mines_max
+                    mines_max = self.level["mines"]
                     is_valid = True
                 else:
                     print("Invalid choice. Please select a number from the menu.\n")
