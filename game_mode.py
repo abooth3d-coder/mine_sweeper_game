@@ -36,15 +36,21 @@ def add_second_to_timer() -> None:
     timer += 1
 
 
+def found_remove_mine_counter():
+    global mines_max
+    mines_max -= 1
+
+
+def unfound_remove_mine_counter():
+    global mines_max
+    mines_max += 1
+
+
 class GameMode:
     def __init__(self):
         self.level = None
         self.difficulty: str = ""
         self.difficulty_selector()
-
-    def found_mine_counter(self):
-        global mines_max
-        mines_max -= 1
 
     def check_win_condition(self) -> None:
         global mines_max

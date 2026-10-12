@@ -48,15 +48,11 @@ class Cell:
             flag_text = self.CELL_FONT.render("F", True, config.FLAG_COLOR)
             text_rect = flag_text.get_rect(center=rect.center)
             surface.blit(flag_text, text_rect)
-            if self.is_mine:
-                self.current_game_mode.found_mine_counter()
-                self.current_game_mode.check_win_condition()
         elif self.is_revealed:
             if self.is_mine:
                 mine_text = self.CELL_FONT.render(self.mine, True, config.MINE_COLOR)
                 text_rect = mine_text.get_rect(center=rect.center)
                 surface.blit(mine_text, text_rect)
-                game_mode.check_loose_condition(self.is_mine)
             elif self.number >= 0:
                 # Map numbers directly to your existing constants
                 color_map = {
@@ -71,7 +67,6 @@ class Cell:
                     8: config.EIGHT_COLOR
                 }
                 text_color = color_map.get(self.number, (0, 0, 0))
-
                 number_text = self.CELL_FONT.render(str(self.number), True, text_color)
                 text_rect = number_text.get_rect(center=rect.center)
                 surface.blit(number_text, text_rect)

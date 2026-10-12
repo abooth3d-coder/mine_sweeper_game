@@ -2,6 +2,7 @@ import grid
 import cell
 import random
 import pygame
+from game_mode import check_loose_condition, found_remove_mine_counter, unfound_remove_mine_counter
 
 
 def check_mine(cell_to_be_checked : cell.Cell) -> bool:
@@ -53,6 +54,15 @@ class MineGrid(grid.Grid):
                 if button_type == 1:  # Left-click
                     if not single_cell.is_revealed and not single_cell.flagged:
                         single_cell.reveal()
+                        check_loose_condition(single_cell.is_mine)
                 elif button_type == 3:  # Right-click
                     if not single_cell.is_revealed:
-                        single_cell.toggle_flagged()
+                        if not single_cell.flagged:
+                            single_cell.toggle_flagged()
+                            if single_cell.is_mine:
+                                found_remove_mine_counter()
+                                self.current_game_mode.check_win_condition()
+                        elif single_cell.flagged:
+                            single_cell.toggle_flagged()
+                            if single_cell.is_mine:
+                                unfound_remove_mine_counter()
