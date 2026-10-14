@@ -16,16 +16,16 @@ class MineGrid(grid.Grid):
     def __init__(self, width: int, height: int, cell_size: int, mine_size: int, active_level: dict, current_game_mode) -> None:
         super().__init__(width, height, cell_size,active_level, current_game_mode)
         self.populate_mines : int = mine_size
-        self.active_level = active_level
+        self.active_level : dict = active_level
 
 
-    def populating_mines(self):
+    def populating_mines(self) -> None:
         mined_cells = random.sample(self.cells, self.populate_mines)
         for single_cell in mined_cells:
             single_cell.set_mine()
-        self.populate_mines = 0
+        self.populate_mines : int = 0
 
-    def calculate_proximity_numbers(self):
+    def calculate_proximity_numbers(self) -> None:
         for target_cell in self.cells:
             if target_cell.is_mine:
                 continue
@@ -33,8 +33,8 @@ class MineGrid(grid.Grid):
                 for offset_y in [-1, 0, 1]:
                     if offset_x == 0 and offset_y == 0:
                         continue
-                    neighbor_x = target_cell.x + offset_x
-                    neighbor_y = target_cell.y + offset_y
+                    neighbor_x : int = target_cell.x + offset_x
+                    neighbor_y : int = target_cell.y + offset_y
                     if 0 <= neighbor_x < self.active_level["grid_size"] and 0 <= neighbor_y < self.active_level["grid_size"]:
                         for possible_neighbor in self.cells:
                             if possible_neighbor.x == neighbor_x and possible_neighbor.y == neighbor_y:
@@ -44,7 +44,7 @@ class MineGrid(grid.Grid):
 
     def handle_click(self, mouse_pos: tuple[int, int], button_type: int) -> None:
         for single_cell in self.cells:
-            cell_rect = pygame.Rect(
+            cell_rect : pygame.Rect = pygame.Rect(
                 single_cell.location.x * single_cell.size,
                 single_cell.location.y * single_cell.size,
                 single_cell.size,

@@ -1,17 +1,14 @@
 import pygame
 import cell
-import config
 
 class Grid(pygame.sprite.Sprite):
-    containers: tuple[pygame.sprite.Group, ...]
-
     def __init__(self, width: int, height: int, cell_size: int,active_level: dict, current_game_mode) -> None:
         super().__init__()
-        self.width = width
-        self.height = height
-        self.cell_size = cell_size
+        self.width : int = width
+        self.height : int = height
+        self.cell_size : int = cell_size
         self.cells : list[cell.Cell] = []
-        self.active_level = active_level
+        self.active_level : dict = active_level
         self.current_game_mode = current_game_mode
 
 

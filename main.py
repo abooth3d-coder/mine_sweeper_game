@@ -1,5 +1,4 @@
 import pygame
-
 import game_mode
 import mine_grid
 import config
@@ -11,29 +10,29 @@ def main():
     pygame.init()
     new_game_mode = GameMode()
     active_level = new_game_mode.get_level()
-    grid_size = active_level["grid_size"]
-    tile_size = active_level["tile_size"]
-    screen_width = (grid_size * tile_size + 20)
-    screen_height = (grid_size * tile_size) + 20
+    grid_size : int = active_level["grid_size"]
+    tile_size : int = active_level["tile_size"]
+    screen_width : int = (grid_size * tile_size + 20)
+    screen_height : int = (grid_size * tile_size) + 20
     print(f"{screen_width} x {screen_height}\n")
     print(f"pygame version: {pygame.version}")
     pygame.display.set_caption("Minesweeper")    # Set the window title
-    screen = pygame.display.set_mode((screen_width, screen_height)) # Set the window size
-    game_clock = pygame.time.Clock()    # Create a clock to manage the frame rate
-    game_grid = mine_grid.MineGrid(screen_width, screen_height, grid_size, active_level["mines"],active_level,new_game_mode)    # Create the mine grid instance
+    screen : pygame.Surface = pygame.display.set_mode((screen_width, screen_height)) # Set the window size
+    game_clock : pygame.time.Clock = pygame.time.Clock()    # Create a clock to manage the frame rate
+    game_grid : mine_grid.MineGrid = mine_grid.MineGrid(screen_width, screen_height, grid_size, active_level["mines"],active_level,new_game_mode)    # Create the mine grid instance
     game_grid.create_grid()     # Create the grid of cells
     game_grid.populating_mines()    # Populate the grid with mines
     game_grid.calculate_proximity_numbers()  # Calculate the numbers for each cell based on adjacent mines
-    grid_width = tile_size * grid_size   # Calculate the width of the grid in pixels
-    grid_height = tile_size * grid_size    # Calculate the height of the grid in pixels
-    grid_surface = screen.subsurface(pygame.Rect(10, 10, grid_width, grid_height))  # Create a subsurface for the grid to draw on
+    grid_width : int = tile_size * grid_size   # Calculate the width of the grid in pixels
+    grid_height : int = tile_size * grid_size    # Calculate the height of the grid in pixels
+    grid_surface : pygame.Surface = screen.subsurface(pygame.Rect(10, 10, grid_width, grid_height))  # Create a subsurface for the grid to draw on
     while True: # Main game loop
         screen.fill(config.BACKGROUND_COLOR)     # Fill the screen with the background color
         for event in pygame.event.get(): #Event handling loop
             if event.type == pygame.QUIT: return     # Quit the game if the user closes the window
             elif event.type == pygame.MOUSEBUTTONDOWN:   # Handle mouse button down events
                 raw_x, raw_y = event.pos    # Get the raw mouse position
-                adjusted_pos = (raw_x - 10, raw_y - 10)  # Adjust the mouse position to account for the grid's offset
+                adjusted_pos : tuple[int, int] = (raw_x - 10, raw_y - 10)  # Adjust the mouse position to account for the grid's offset
                 game_grid.handle_click(adjusted_pos, event.button)  # Handle the click event on the grid
         game_clock.tick(60)# Limit the frame rate to 60 frames per second
         game_mode.add_second_to_timer()
